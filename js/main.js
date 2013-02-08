@@ -11,38 +11,38 @@ $( '#jsonData' ).on( 'click', function () {
         type:       'GET',
         dataType:   'json',
         success:    function ( json ) {
-            //console.log(json,memberLogLog);
-            $.each(json.memberLog, function (i, memberLog) {
-                    console.log(i + " " + memberLog.fullName[0] + " " + memberLog.fullName[1]);
+            //console.log(json,memLog);
+            $.each(json.memLog, function (i, memLog) {
+                    console.log(i + " " + memLog.fullName[0] + " " + memLog.fullName[1]);
 
                     var makeli = $("<li id='listItem" + i + "'></li>");
-                    var optSubText = $("<img src='images/" + memberLog.greeting[1] + ".png'/>" +
+                    var optSubText = $("<img src='images/" + memLog.greeting[1] + ".png'/>" +
 
-                       /* '<p>' + memberLog.greeting[0] + " " + memberLog.greeting[1] + "</p>" +
-                        '<p>' + memberLog.fullName[0] + " " + memberLog.fullName[1] + "</p>" +
-                        '<p>' + memberLog.email[0] + " " + memberLog.email[1] + "</p>" +
-                        '<p>' + memberLog.kids[0] + " " + memberLog.kids[1] + "</p>" +
-                        '<p>' + memberLog.gender[0] + " " + memberLog.gender[1] + "</p>" +
-                        '<p>' + memberLog.date[0] + " " + memberLog.date[1] + "</p>");*/
+                        '<p>' + memLog.greeting[0] + " " + memLog.greeting[1] + "</p>" +
+                        '<p>' + memLog.fullName[0] + " " + memLog.fullName[1] + "</p>" +
+                        '<p>' + memLog.email[0] + " " + memLog.email[1] + "</p>" +
+                        '<p>' + memLog.kids[0] + " " + memLog.kids[1] + "</p>" +
+                        '<p>' + memLog.gender[0] + " " + memLog.gender[1] + "</p>" +
+                        '<p>' + memLog.date[0] + " " + memLog.date[1] + "</p>");
 
-/*
-                    "<li>" +
+
+                    /*"<li>" +
                      "<h2>" + item.greeting + "</h2>" +
                      "<p>" + item.fullName + "</p>" +
                      "<p>" + item.email + "</p>" +
                      "<p>" + item.kids + "</p>" +
                      "<p>" + item.gender + "</p>" +
                      "<p>" + item.date + "</p>" +
-                     "</li>" 
-            //});
-                   // $("#listData").listview('refresh')
+                     "</li>"  */
+            });
+                    $("#listData").listview('refresh')
 
-               /* },
+                },
                 error: function(){
                     console.log("error");
         }
     });
-});*/
+});
 
 $( '#xmlData' ).on( 'click', function() {
     console.log("calling XML Data");
@@ -84,8 +84,7 @@ $( '#xmlData' ).on( 'click', function() {
             }
 
          });
-    })
-    );
+    });
 
 
 $( '#csvData' ).on( 'click', function() {
@@ -122,7 +121,6 @@ $( '#csvData' ).on( 'click', function() {
 });
 
 $('#yamlData').on("click", function () {
-        console.log("#yamlData");
         $("#listData").empty();
         $.ajax({
             url:"data/data.yaml",
@@ -130,11 +128,11 @@ $('#yamlData').on("click", function () {
             dataType:'text',
             success:function (yaml) {
                 console.log("Starting YAML");
-                var entryItem = {};
-                $.extend(entryItem, yaml);
-                console.log(entryItem);
+                var entryItems = {};
+                $.extend(entryItems, yaml);
+                console.log(entryItems);
 
-                $.each(entryItem, function (i, entryItem) {
+                $.each(entryItems, function (i, entryItem) {
 
 
                     var makeli = $("<li id='listItem" + i + "'></li>");
@@ -360,4 +358,3 @@ function makeItemLinks( key, linksLi )
 }
 
 
-);
